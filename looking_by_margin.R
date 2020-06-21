@@ -3,20 +3,20 @@
 #Making the margin using casewhen
 margin_size <- election_results_2016 %>% ungroup() %>% 
   mutate(margin_size = case_when(trump_win_margin<=-.3~"Clinton 30+",
-                          trump_win_margin>(-.3) & trump_win_margin<=-.1~"Clinton 10+",
-                          trump_win_margin>-.1 & trump_win_margin<(-.05)~"Clinton 5+",
-                          trump_win_margin>=-.05 & trump_win_margin<=0~"Clinton 0-5",
-                          trump_win_margin>0 & trump_win_margin<=.05~"Trump 0-5",
-                          trump_win_margin>.05 & trump_win_margin<=.1~"Trump 5+",
-                          trump_win_margin>.1 & trump_win_margin<=.3~"Trump 10+",
-                          trump_win_margin>.3~"Trump 30+")) %>% 
+                                 trump_win_margin>(-.3) & trump_win_margin<=-.1~"Clinton 10+",
+                                 trump_win_margin>-.1 & trump_win_margin<(-.05)~"Clinton 5+",
+                                 trump_win_margin>=-.05 & trump_win_margin<=0~"Clinton 0-5",
+                                 trump_win_margin>0 & trump_win_margin<=.05~"Trump 0-5",
+                                 trump_win_margin>.05 & trump_win_margin<=.1~"Trump 5+",
+                                 trump_win_margin>.1 & trump_win_margin<=.3~"Trump 10+",
+                                 trump_win_margin>.3~"Trump 30+")) %>% 
   select(State,County,margin_size,County_Population)
 
 #Labeling the factor and making it ordered
 margin_size$margin_size <- factor(margin_size$margin_size,
-       levels = c("Clinton 30+","Clinton 10+","Clinton 5+", "Clinton 0-5",
-                  "Trump 0-5","Trump 5+","Trump 10+", "Trump 30+"),
-       ordered = T)
+                                  levels = c("Clinton 30+","Clinton 10+","Clinton 5+", "Clinton 0-5",
+                                             "Trump 0-5","Trump 5+","Trump 10+", "Trump 30+"),
+                                  ordered = T)
 
 #Getting the population of each of the categories (so the margin of Clinton 30+ Counties, For Example)
 winner_pop_by_margin <- margin_size %>% group_by(margin_size) %>% 

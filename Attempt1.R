@@ -36,8 +36,7 @@ election_results_2016 <- election_results %>% filter(year==2016, party %in% c("d
          trump_win_margin=percent_rep-percent_dem,
          winner=ifelse(trump_win_margin>0,"Trump Won","Clinton Won")) %>%
   rename("County"=county,"State"=state) %>% 
-  select(State,County,winner,percent_dem,percent_rep,trump_win_margin) %>% 
-  filter(State!="Alaska")
+  select(State,County,winner,percent_dem,percent_rep,trump_win_margin)
  
 ##Joining with County and State Population
 election_results_2016 <- left_join(election_results_2016,county_pop,by=c("State","County"))
@@ -53,7 +52,39 @@ data <- left_join(corona_cases,election_results_2016,by=c("State","County")) %>%
 
 # Adding Winners for Counties Not Included --------------------------------
 data <- data %>%  
-  mutate(trump_win_margin=ifelse(County=="New York City",-.7,trump_win_margin),
+  mutate(trump_win_margin=case_when(County=="New York City"~(-.7),
+                                    County=="St. Louis"~(-.162),
+                                    County=="St. Louis city"~(-.63),
+                                    County=="Baltimore city"~(-.742),
+                                    County=="Anchorage"~(.54),
+                                    County=="Aleutians East Borough"~.243,
+                                    County=="Aleutians West Census Area"~(-.241),
+                                    County=="Bethel Census Area"~(-.327),
+                                    County=="Bristol Bay Borough"~.291,
+                                    County=="DeSoto"~.275,
+                                    County=="DeWitt"~.636,
+                                    County=="Dillingham Census Area"~.154,
+                                    County=="Doña Ana"~-.178,
+                                    County=="Fairbanks North Star Borough"~.209,
+                                    County=="Haines Borough"~-.039,
+                                    County=="Juneau City and Borough"~-.185,
+                                    County=="Kenai Peninsula Borough"~.373,
+                                    County=="Ketchikan Gateway Borough"~.237,
+                                    County=="Kodiak Island Borough"~.184,
+                                    County=="Lac qui Parle"~.256,
+                                    County=="Lake and Peninsula Borough"~-.038,
+                                    County=="LaSalle"~.796,
+                                    County=="Matanuska-Susitna Borough"~.516,
+                                    County=="Nome Census Area"~-.229,
+                                    County=="North Slope Borough"~-.124,
+                                    County=="Northwest Arctic Borough"~.275,
+                                    County=="Petersburg Borough"~.203,
+                                    County=="Prince of Wales-Hyder Census Area"~.078,
+                                    County=="Sitka City and Borough"~-.068,
+                                    County=="Southeast Fairbanks Census Area"~.516,
+                                    County=="Valdez-Cordova Census Area"~.288,
+                                    County=="Wrangell City and Borough"~.428,
+                                    County=="Yukon-Koyukuk Census Area"~.273),
         winner=case_when(County=="New York City"~"Clinton Won",
                           County=="St. Louis" & State=="Missouri"~"Clinton Won",
                           County=="St. Louis city" & State=="Missouri"~"Clinton Won",
@@ -149,7 +180,6 @@ data_grouped <- data %>%
          
          
 # Analysis ----------------------------------------------------------------
-
 # Full Country ------------------------------------------------------------
 #Absolute New Cases
 (a <-   ggplot(data_grouped,aes(x=Date,y=New_Cases_Avg)) +
