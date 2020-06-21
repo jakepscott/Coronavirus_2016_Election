@@ -25,7 +25,8 @@ corona_cases <- read_csv(url("https://raw.githubusercontent.com/nytimes/covid-19
 corona_cases <- left_join(corona_cases,State_Names, by=c("state"))
 corona_cases <- corona_cases %>% rename("County"=county,"State"=state, "Date"=date, "Cases"=cases,"Deaths"=deaths)
 corona_cases <- corona_cases %>% filter(State %in% State_Names$state | State=="District of Columbia") %>% 
-  filter(County!="Unknown") %>% filter(Date>="2020-03-015")
+  filter(County!="Unknown") %>% filter(Date>="2020-03-015") %>% 
+  mutate(County=ifelse(str_detect(County,"city")==TRUE & State=="Virginia", str_remove(County," city"),County))
 
 # Cleaning Election Data --------------------------------------------------
 #Getting a winner variable
@@ -42,7 +43,10 @@ election_results_2016 <- election_results %>% filter(year==2016, party %in% c("d
 election_results_2016 <- left_join(election_results_2016,county_pop,by=c("State","County"))
 election_results_2016 <- left_join(election_results_2016,state_pop,by=c("State"))
 #Getting the Population of the counties that voted for Clinton Versus for Trump
-election_results_2016 <- election_results_2016 %>% group_by(winner) %>% mutate(Winner_Population=sum(County_Population,na.rm = T)) 
+election_results_2016 <- election_results_2016 %>% group_by(winner) %>% 
+  mutate(Winner_Population=sum(County_Population,na.rm = T)) %>% 
+  filter(!(State=="Virginia" & County=="Bedford" & is.na(winner)),
+         !(str_detect(County,"writein")==TRUE))
 
 # Joining Data ------------------------------------------------------------
 #Joining election results, cases, and county population
@@ -84,7 +88,8 @@ data <- data %>%
                                     County=="Southeast Fairbanks Census Area"~.516,
                                     County=="Valdez-Cordova Census Area"~.288,
                                     County=="Wrangell City and Borough"~.428,
-                                    County=="Yukon-Koyukuk Census Area"~.273),
+                                    County=="Yukon-Koyukuk Census Area"~.273,
+                                    TRUE~trump_win_margin),
         winner=case_when(County=="New York City"~"Clinton Won",
                           County=="St. Louis" & State=="Missouri"~"Clinton Won",
                           County=="St. Louis city" & State=="Missouri"~"Clinton Won",
@@ -276,7 +281,10 @@ b <- ggplot(difference,aes(Date,difference)) +
 
 # By State ----------------------------------------------------------------
 winner_pop_by_state <- election_results_2016 %>% ungroup() %>% group_by(State,winner) %>% 
-  summarise(Winner_Population_State=sum(County_Population,na.rm = T))
+  summarise(Winner_Population_State=sum(County_Population,na.rm = T)) %>% 
+  mutate(Winner_Population_State=case_when(State=="Alaska" & winner=="Clinton Won"~116454,
+                                           State=="Alaska" & winner=="Trump Won"~163387,
+                                           TRUE~Winner_Population_State))
 
 
 state_data_grouped <- left_join(data,winner_pop_by_state,by=c("State","winner"))
