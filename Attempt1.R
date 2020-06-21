@@ -330,6 +330,6 @@ ggplot(state_data_grouped,aes(x=Date,y=New_Cases_Per_Million_Avg)) +
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         strip.text = element_text(size=rel(.6), margin = margin(.05,0,.05,0, "cm")),
-        strip.background.y=element_rect(color = "grey70",  fill=NA),
+        strip.background=element_rect(color = "black",  fill="grey90"),
         legend.position = "none") 
 ggsave("figures/geo_facet.png",dpi=600,width = 7.5,height = 5)
