@@ -10,8 +10,8 @@ data_margin <- data_margin %>% filter(margin_size=="Trump 5+")
 
 data_margin <- data_margin %>% 
   group_by(Date,County) %>% summarize(Cases=sum(Cases),
-                                           Deaths=sum(Deaths),
-                                           Winner_Population_Margin_Size=last(Winner_Population_Margin_Size)) %>% 
+                                      Deaths=sum(Deaths),
+                                      Winner_Population_Margin_Size=last(Winner_Population_Margin_Size)) %>% 
   ungroup() %>% 
   mutate(Cases_Per_Million=(Cases/Winner_Population_Margin_Size)*1000000,
          Deaths_Per_Million=(Deaths/Winner_Population_Margin_Size)*1000000) %>% 
