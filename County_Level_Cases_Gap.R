@@ -194,7 +194,7 @@ data_grouped <- data %>%
                  breaks = c(as.Date("2020-04-01"),as.Date("2020-05-01"),as.Date("2020-06-01"))) +
     scale_y_continuous(expand = c(0,0),label = comma) +
     scale_color_manual(values = c("#2E74C0", "#CB454A")) +
-    labs(title = "Counties that voted for <span style='color: #CB454A'>**Trump**</span> have consistently seen fewer new <br>cases per day than those that voted for <span style='color: #2E74C0'>**Clinton**</span>",
+    labs(title = "Counties that voted for <span style='color: #CB454A'>**Trump**</span> have consistently seen fewer <br>new cases per day than those that voted for <span style='color: #2E74C0'>**Clinton**</span>",
          subtitle = "7 Day Rolling Average of New Cases",
          x=NULL) +
     theme_minimal(base_family = "Roboto Condensed", base_size = 12) +
@@ -333,3 +333,30 @@ ggplot(state_data_grouped,aes(x=Date,y=New_Cases_Per_Million_Avg)) +
         strip.background=element_rect(color = "black",  fill="grey90"),
         legend.position = "none") 
 ggsave("figures/geo_facet.png",dpi=600,width = 7.5,height = 5)
+
+
+# Deaths ------------------------------------------------------------------
+
+# Deaths ------------------------------------------------------------------
+#Per Million Residents
+
+(a <-   ggplot(data_grouped,aes(x=Date,y=New_Deaths_Per_Million_Avg)) +
+   geom_line(aes(color=winner),lwd=2) +
+   coord_cartesian(xlim=c(as.Date("2020-04-01"),as.Date("2020-06-20")),ylim=c(0,12)) +
+   scale_x_date(expand = c(0,0)) +
+   scale_y_continuous(expand = c(0,0)) +
+   scale_color_manual(values = c("#2E74C0", "#CB454A")) +
+   labs(title = "The gap in new deaths is also closing, but more slowly than new \ncases",
+        subtitle = "7 Day Rolling Average of New Deaths Per Million Residents",
+        x=NULL) +
+   theme_minimal(base_family = "Roboto Condensed", base_size = 12) +
+   theme(plot.title = element_text(face = "bold", size = rel(1.5)),
+         plot.subtitle = element_text(face = "plain", size = rel(1.1), color = "grey70"),
+         plot.caption = element_text(face = "italic", size = rel(0.8), 
+                                     color = "grey70"),
+         plot.title.position = "plot", 
+         axis.title = element_blank(),
+         axis.text = element_text(siz=rel(1)),
+         legend.position = "none"))
+
+ggsave("figures/New_Deaths_by_county.png",dpi=600)
