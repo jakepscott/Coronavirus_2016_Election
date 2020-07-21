@@ -110,7 +110,7 @@ b <- ggplot(difference,aes(date,difference)) +
 
 (plot <- a /
     b + plot_layout(heights = c(8,1)))  
-ggsave("figures/New_Cases_by_State.png",dpi=600)
+#ggsave("figures/New_Cases_by_State.png",dpi=600)
 
 
 

@@ -1,3 +1,5 @@
+source("County_Setup_Code.R")         
+
 # Making A Margin Size Variable -------------------------------------------
 
 #Making the margin using casewhen
@@ -83,4 +85,4 @@ ggplot(data_margin,aes(x=Date,y=New_Cases_Per_Million_Avg)) +
         axis.text.y = element_text(siz=rel(.7)),
         axis.text.x = element_blank(),
         legend.position = "none")
-ggsave("figures/by_margin_with_Suffolk.png",dpi=600)
+#ggsave("figures/by_margin_with_Suffolk.png",dpi=600)
