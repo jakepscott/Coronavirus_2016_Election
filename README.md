@@ -32,6 +32,9 @@ library(geofacet)
 library(patchwork)
 ```
 
+### Datasets
+The election data came from the [MIT Election lab](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ). The population data came from the [Census Bureau](https://www.census.gov/data/tables/time-series/demo/popest/2010s-counties-total.html). 
+
 ## Author
 
 * **Jake Scott** - [Twitter](https://twitter.com/jakepscott2020), [Medium](https://medium.com/@jakepscott16)
