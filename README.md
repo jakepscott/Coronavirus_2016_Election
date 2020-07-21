@@ -1,9 +1,9 @@
 # Coronavirus_2016_Election
-This repo contains the code for a [Medium article](https://medium.com/@jakepscott16/what-2016-can-tell-us-about-coronavirus-6dd395c7b64) I wrote on how the impact of the Coronavirus was non-randomly distributed across the United States in a way that related to the 2016 election.
+This repo contains the code for a [Medium article](https://medium.com/@jakepscott16/what-2016-can-tell-us-about-coronavirus-6dd395c7b64) I wrote on how the impact of the Coronavirus is non-randomly distributed across the United States based on the political leanings of counties/states, and how that may be shaping views of the disease. 
 
 ## Getting Started
 
-To replicate the figures in the article, simply download the folders and code in this repo. The order in which you run the code should not matter. The set up code for the county-level analysis is in the County_Setup_Code.R file, which is sourced in the analysis files. 
+To replicate the figures in the article, simply download the folders and code in this repo. The order in which you run the files should not matter. The set up code for the county-level analysis is in the County_Setup_Code.R file, which is sourced in the analysis files. 
 
 ### Prerequisites
 
