@@ -1,4 +1,4 @@
-# Coronavirus_2016_Election
+# Coronavirus, the 2016 Election, and Differential Views of the Virus
 This repo contains the code for a [Medium article](https://medium.com/@jakepscott16/what-2016-can-tell-us-about-coronavirus-6dd395c7b64) I wrote on how the impact of the Coronavirus is non-randomly distributed across the United States based on the political leanings of counties/states, and how that may be shaping views of the disease. 
 
 ## Getting Started
