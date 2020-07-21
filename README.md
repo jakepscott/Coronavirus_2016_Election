@@ -33,7 +33,7 @@ library(patchwork)
 ```
 
 ### Datasets
-The election data came from the [MIT Election lab](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ). The population data came from the [Census Bureau](https://www.census.gov/data/tables/time-series/demo/popest/2010s-counties-total.html). 
+Coronavirus data from New York Times Coronavirus [repo](https://github.com/nytimes/covid-19-data), election data from the [MIT Election lab](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ), and population data came from the [Census Bureau](https://www.census.gov/data/tables/time-series/demo/popest/2010s-counties-total.html). 
 
 ## Author
 
