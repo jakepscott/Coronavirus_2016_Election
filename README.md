@@ -3,7 +3,7 @@ This repo contains the code for a [Medium article](https://medium.com/@jakepscot
 
 ## Getting Started
 
-To replicate the figures in the article, simply download the folders and code in this repo. The order in which you run the files should not matter. The set up code for the county-level analysis is in the County_Setup_Code.R file, which is sourced in the analysis files. 
+To replicate the figures in the article, simply download the folders and code in this repo. The order in which you run the files should not matter. The set up code for the county-level analysis is in the County_Setup_Code.R file, which is sourced in the analysis files and thus does not need to be run seperately. 
 
 ### Prerequisites
 
