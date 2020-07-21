@@ -1,7 +1,7 @@
 source("County_Setup_Code.R")         
 # Analysis ----------------------------------------------------------------
 # Full Country ------------------------------------------------------------
-#Absolute New Cases
+#Figure 1: Absolute New Cases
 (a <-   ggplot(data_grouped,aes(x=Date,y=New_Cases_Avg)) +
     geom_line(aes(color=winner),lwd=2) +
     coord_cartesian(ylim=c(0,27000)) +
@@ -47,7 +47,7 @@ b <- ggplot(difference,aes(Date,difference)) +
     b + plot_layout(heights = c(8,1)))
 #ggsave("figures/Clinton_Vs_Trump_Counties_Absolute.png",dpi=600)
 
-#Per Million Residents
+#Figure 2: Per Million Residents
 
 (a <-   ggplot(data_grouped,aes(x=Date,y=New_Cases_Per_Million_Avg)) +
     geom_line(aes(color=winner),lwd=2) +
@@ -94,7 +94,7 @@ b <- ggplot(difference,aes(Date,difference)) +
     b + plot_layout(heights = c(8,1)))
 #ggsave("figures/Clinton_Vs_Trump_Counties.png",dpi=600)
 
-# By State ----------------------------------------------------------------
+# Figure 5 Geo_Facet map by state ----------------------------------------------------------------
 winner_pop_by_state <- election_results_2016 %>% ungroup() %>% group_by(State,winner) %>% 
   summarise(Winner_Population_State=sum(County_Population,na.rm = T)) %>% 
   mutate(Winner_Population_State=case_when(State=="Alaska" & winner=="Clinton Won"~116454,
@@ -152,7 +152,7 @@ ggplot(state_data_grouped,aes(x=Date,y=New_Cases_Per_Million_Avg)) +
 
 # Deaths ------------------------------------------------------------------
 
-# Deaths ------------------------------------------------------------------
+# Figure 7: Deaths ------------------------------------------------------------------
 #Per Million Residents
 
 (a <-   ggplot(data_grouped,aes(x=Date,y=New_Deaths_Per_Million_Avg)) +

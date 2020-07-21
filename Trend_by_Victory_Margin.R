@@ -59,7 +59,7 @@ data_margin <- data_margin %>%
          New_Deaths_Per_Million_Avg=(New_Deaths_Avg/Winner_Population_Margin_Size)*1000000)
 
 
-# Graphing ----------------------------------------------------------------
+# Graphing Figure 3 ----------------------------------------------------------------
 ##This is makes the color scheme, going from very democratic to very republican
 cc <- scales::seq_gradient_pal("#2E74C0", "#CB454A")(seq(0,1,length.out=8))
 

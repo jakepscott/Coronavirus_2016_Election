@@ -65,7 +65,7 @@ state_data_grouped <- state_data %>%
 
 # Graphing Data -----------------------------------------------------------
 
-#Absolute New Cases
+#Figure 6: Absolute New Cases
 (a <-   ggplot(state_data_grouped,aes(x=date,y=New_Cases_Avg)) +
    geom_line(aes(color=winner),lwd=2) +
    coord_cartesian(ylim=c(0,27000),xlim=c(as.Date("2020-04-01"),as.Date("2020-06-20"))) +
